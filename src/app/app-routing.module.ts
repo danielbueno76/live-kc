@@ -17,6 +17,7 @@ const routes: Routes = [
       import('./contactos/contactos.module').then((m) => m.ContactosModule),
   },
   { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
 @NgModule({
