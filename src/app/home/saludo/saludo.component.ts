@@ -7,12 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SaludoComponent implements OnInit {
   usuario: string;
+  idioma: string;
   constructor() {
     this.usuario = '';
+    this.idioma = '';
   }
 
   ngOnInit(): void {
     this.usuario = 'Daniel';
+    this.idioma = 'es';
   }
 
   btnBorrar(ev: any) {
