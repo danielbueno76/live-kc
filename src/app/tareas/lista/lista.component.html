@@ -4,7 +4,16 @@
   </div>
   <div class="card-body">
     <ul>
-      <li *ngFor="let item of aItems">{{ item }}</li>
+      <li *ngFor="let item of aItems; let i = index">
+        {{ item }} - {{ i }}
+        <button
+          type="button"
+          class="btn btn-danger btn-sm"
+          (click)="btnBorrar(i)"
+        >
+          Borrar
+        </button>
+      </li>
     </ul>
   </div>
   <div class="card-footer text-muted"></div>

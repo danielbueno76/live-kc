@@ -18,4 +18,7 @@ export class ControlTareasComponent implements OnInit {
   addTareas(tarea: any) {
     this.aTareas.push(tarea);
   }
+  deleteTareas(i: number) {
+    this.aTareas.splice(i, 1);
+  }
 }
