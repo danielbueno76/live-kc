@@ -3,18 +3,14 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'kc-tareas',
   template: `
-    <p>
-      tareas works!
-    </p>
+    <div class="row">
+      <kc-control-tareas class="col"></kc-control-tareas>
+    </div>
   `,
-  styles: [
-  ]
+  styles: [],
 })
 export class TareasComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

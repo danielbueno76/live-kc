@@ -7,12 +7,12 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   {
-    path: 'path',
+    path: 'tareas',
     loadChildren: () =>
       import('./tareas/tareas.module').then((m) => m.TareasModule),
   },
   {
-    path: 'path',
+    path: 'contactos',
     loadChildren: () =>
       import('./contactos/contactos.module').then((m) => m.ContactosModule),
   },
