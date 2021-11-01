@@ -1,1 +1,11 @@
-<p>{{ aItems | json }}</p>
+<div *ngIf="aItems.length" class="card">
+  <div class="card-header">
+    <h4 class="card-title">Lista de tareas</h4>
+  </div>
+  <div class="card-body">
+    <ul>
+      <li *ngFor="let item of aItems">{{ item }}</li>
+    </ul>
+  </div>
+  <div class="card-footer text-muted"></div>
+</div>
