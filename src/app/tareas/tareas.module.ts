@@ -6,18 +6,15 @@ import { TareasComponent } from './tareas.component';
 import { ControlTareasComponent } from './control-tareas/control-tareas.component';
 import { ItemComponent } from './item/item.component';
 import { ListaComponent } from './lista/lista.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     TareasComponent,
     ControlTareasComponent,
     ItemComponent,
-    ListaComponent
+    ListaComponent,
   ],
-  imports: [
-    CommonModule,
-    TareasRoutingModule
-  ]
+  imports: [CommonModule, TareasRoutingModule, FormsModule],
 })
-export class TareasModule { }
+export class TareasModule {}
