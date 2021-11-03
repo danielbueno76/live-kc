@@ -1,4 +1,4 @@
-<form #formulario="ngForm">
+<form #formulario="ngForm" (ngSubmit)="enviar()">
   <!--Text-->
   <fieldset>
     <legend>Datos del Usuario</legend>
@@ -8,13 +8,24 @@
       <input
         type="text"
         class="form-control col-9"
+        #nameState="ngModel"
         name="name"
         id="name"
         [(ngModel)]="contacto.name"
         required
+        minlength="3"
         placeholder="Indica tu nombre (es obligatorio)"
       />
     </div>
+    <div [hidden]="nameState.valid || nameState.untouched">
+      <div class="error-message" [hidden]="!nameState.errors?.required">
+        El nombre es obligatorio
+      </div>
+      <div class="error-message" [hidden]="!nameState.errors?.minlength">
+        El nombre debe tener un mínimo de 3 caracteres
+      </div>
+    </div>
+
     <!--Etiqueta / Campo "Apellidos"-->
     <div class="form-group row">
       <label for="lastname" class="col-3">Apellidos</label>
@@ -75,116 +86,72 @@
   </fieldset>
   <div class="optional row">
     <!--Radio-Buttos-->
-    <fieldset class="form-group col">
+    <fieldset
+      class="form-group col"
+      *ngIf="
+        contacto.grupo?.nombre == 'Negocios' ||
+        contacto.grupo?.nombre == 'Trabajo'
+      "
+    >
       <!--Etiqueta / Campo "Sector laboral"-->
       <legend>Sector laboral</legend>
-      <div class="form-check">
+      <div class="form-check" *ngFor="let sector of aSectores">
         <label class="form-check-label">
           <input
             type="radio"
             class="form-check-input"
             name="sector"
-            id="tecnico"
-            value="tecnico"
+            [id]="sector.nombre"
+            [value]="sector"
+            [(ngModel)]="contacto.sector"
           />
-          Técnico
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input
-            type="radio"
-            class="form-check-input"
-            name="sector"
-            id="creativo"
-            value="creativo"
-          />
-          Creativo
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input
-            type="radio"
-            class="form-check-input"
-            name="sector"
-            id="comercial"
-            value="comercial"
-          />
-          Comercial
-        </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input
-            type="radio"
-            class="form-check-input"
-            name="sector"
-            id="otros"
-            value="otros"
-          />
-          Otros
+          {{ sector.nombre }}
         </label>
       </div>
     </fieldset>
     <!--Checkbox-->
-    <fieldset class="form-group col">
+    <fieldset
+      class="form-group col"
+      *ngIf="
+        contacto.grupo?.nombre == 'Familia' ||
+        contacto.grupo?.nombre == 'Amigos'
+      "
+    >
       <legend>Aficiones</legend>
-      <div class="form-check">
+      <div class="form-check" *ngFor="let aficion of aAficiones; let state">
         <label class="form-check-label">
           <input
             type="checkbox"
             class="form-check-input"
-            id="lectura"
-            name="lectura"
+            [id]="aficion.nombre"
+            [name]="aficion.nombre"
+            (change)="changeAficiones($event)"
           />
-          Lectura
+          {{ aficion.nombre }}
         </label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input
-            type="checkbox"
-            class="form-check-input"
-            id="musica"
-            name="musica"
-          />
-          Música</label
-        >
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input
-            type="checkbox"
-            class="form-check-input"
-            id="deporte"
-            name="deporte"
-          />
-          Deporte</label
-        >
-      </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input
-            type="checkbox"
-            class="form-check-input"
-            id="viajar"
-            name="viajar"
-          />
-          Viajar</label
-        >
       </div>
     </fieldset>
   </div>
-
   <div class="form-group row">
-    <button type="submit" class="btn btn-primary mr-2">Enviar</button>
-    <button type="button" class="btn btn-primary">Borrar</button>
+    <button
+      type="submit"
+      class="btn btn-primary mr-2"
+      [disabled]="formulario.invalid"
+    >
+      Enviar
+    </button>
+    <button
+      type="reset"
+      class="btn btn-primary"
+      [disabled]="formulario.pristine"
+    >
+      Borrar
+    </button>
   </div>
 </form>
 
-{{ contacto | json }}<br />
-
-pristine {{ formulario.pristine }} <br />touched {{ formulario.touched }}
-<br />valid
-{{ formulario.valid }}
+{{ contacto | json }}
+<br />
+pristine {{ formulario.pristine }} <br />
+untouched {{ formulario.untouched }} <br />
+valid {{ formulario.valid }} <br />

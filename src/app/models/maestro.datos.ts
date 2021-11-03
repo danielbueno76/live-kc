@@ -1,3 +1,4 @@
+import { Aficion } from './aficiones.model';
 import { Grupo } from './grupo.mode';
 import { Sector } from './sector.model';
 
@@ -49,4 +50,10 @@ export const SECTORES: Array<Sector> = [
     nombre: 'Otros',
     descripcion: '',
   },
+];
+export const AFICIONES: Array<Aficion> = [
+  { id: 1, nombre: 'Lectura', descripción: '' },
+  { id: 2, nombre: 'Musica', descripción: '' },
+  { id: 3, nombre: 'Deporte', descripción: '' },
+  { id: 4, nombre: 'Viajar', descripción: '' },
 ];

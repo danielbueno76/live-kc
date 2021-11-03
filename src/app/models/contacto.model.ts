@@ -9,6 +9,7 @@ export class Contacto {
   grupo!: Grupo;
   sector!: Sector;
   aficiones: Array<any>;
+
   constructor() {
     this.name = '';
     this.lastname = '';
