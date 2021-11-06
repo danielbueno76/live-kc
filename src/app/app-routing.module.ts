@@ -16,6 +16,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./contactos/contactos.module').then((m) => m.ContactosModule),
   },
+  {
+    path: 'libros',
+    loadChildren: () =>
+      import('./libros/libros.module').then((m) => m.LibrosModule),
+  },
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
