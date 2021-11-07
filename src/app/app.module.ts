@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,7 +8,6 @@ import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 import { AboutModule } from './about/about.module';
 import { FormsModule } from '@angular/forms';
-import { MbooksService } from './services/mbooks.service';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -17,8 +17,9 @@ import { MbooksService } from './services/mbooks.service';
     CoreModule,
     HomeModule,
     AboutModule,
+    HttpClientModule,
   ],
-  providers: [MbooksService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
